@@ -293,13 +293,13 @@
     </div>
 
     <script>
-        // Kalimat yang dewasa, tulus, dan tidak alay
+        // Kalimat yang disesuaikan dengan nama panggilan sayang untuk Tina
         const quotes = [
-            "Maaf ya kalau belakangan ini aku sempat membuat kesalahan, baik yang kusengaja maupun tidak... <br><br>",
-            "Maaf juga kalau caraku merespons sesuatu kadang egois dan membuatmu merasa kesal. Aku benar-benar tidak berniat seperti itu... <br><br>",
-            "Satu hal yang perlu kamu tahu, aku sangat bersyukur dan menghargai kehadiranmu di hidupku. Aku hanya tidak ingin kehilangan momen bersamamu... <br><br>",
-            "Terima kasih karena selalu sabar menghadapiku sampai hari ini. Kamu adalah bagian terbaik dalam keseharianku... <br><br>",
-            "Jadi, apa kita bisa melupakan kekesalan kemarin dan mulai tersenyum lagi?"
+            "Ini pesan permintaan maaf tulus untuk pacar acuuu, ceweee acuu, cantikknyaa acuuu tinaaaacuuu... ❤️ <br><br>",
+            "Maaf ya kalau belakangan ini aku sempat membuat kesalahan atau bersikap kekanak-kanakan, baik yang kusengaja maupun tidak... <br><br>",
+            "Maaf juga kalau caraku merespons sesuatu kadang egois dan membuatmu merasa kesal. Aku benar-benar tidak berniat membuatmu sedih... <br><br>",
+            "Satu hal yang perlu kamu tahu, aku sangat bersyukur dan selalu menghargai kehadiranmu di hidupku. Aku hanya tidak ingin kehilangan momen bersamamu... <br><br>",
+            "Terima kasih karena selalu sabar menghadapi segala sifatku sampai hari ini. Jadi, apa tinaaaacuuu mau melupakan kekesalan kemarin dan tersenyum lagi?"
         ];
 
         const btnLove = document.getElementById('btnLove');
@@ -323,7 +323,7 @@
             bgm.volume = 0.4;
             bgm.play().catch(e => console.log("Audio play diblokir sistem browser."));
 
-            let searchTarget = "permintaan maaf tulus untuk pacarku...";
+            let searchTarget = "permintaan maaf tulus untuk tinaaaacuuu...";
             let i = 0;
             function typeInSearchBar() {
                 if (i < searchTarget.length) {
@@ -334,7 +334,6 @@
                     setTimeout(() => {
                         document.body.classList.add('active-love');
                         setInterval(createAdvancedPetal, 120);
-                        // Mulai ketik paragraf pertama secara otomatis
                         showNextSentence();
                     }, 600);
                 }
@@ -342,12 +341,10 @@
             typeInSearchBar();
         }
 
-        // Logika Tombol "Lanjut" Per Kalimat
         let currentSentenceIndex = 0;
         btnNext.addEventListener('click', showNextSentence);
 
         function showNextSentence() {
-            // Sembunyikan tombol lanjut selama proses mengetik agar tidak bisa di-spam klik
             btnNext.style.opacity = "0";
             btnNext.style.pointerEvents = "none";
 
@@ -363,23 +360,19 @@
                         loveText.innerHTML += currentQuote.charAt(charIndex);
                         charIndex++;
                     }
-                    setTimeout(typeSentence, 35); // Kecepatan mengetik halus
+                    setTimeout(typeSentence, 35);
                 } else {
-                    // Selesai mengetik satu paragraf
                     currentSentenceIndex++;
                     
-                    // Jika masih ada kalimat berikutnya, munculkan kembali tombol Lanjut
                     if (currentSentenceIndex < quotes.length) {
                         setTimeout(() => {
                             btnNext.style.opacity = "1";
                             btnNext.style.pointerEvents = "auto";
                         }, 400);
                     } else {
-                        // Jika semua kalimat sudah selesai, hilangkan tombol Lanjut dan ganti ke pilihan Akhir
                         setTimeout(() => {
                             btnNext.classList.add('hidden');
                             decisionBox.classList.remove('hidden');
-                            // Atur posisi awal tombol kabur
                             btnNo.style.right = "40px";
                             btnNo.style.top = "0px";
                         }, 600);
@@ -389,7 +382,6 @@
             typeSentence();
         }
 
-        /* --- EFEK LEDAKAN HATI --- */
         function createHeartBurst(x, y, count) {
             const heartsArr = ['❤️', '🌸', '✨'];
             for(let i = 0; i < count; i++) {
@@ -417,7 +409,6 @@
             }
         }
 
-        /* --- HUJAN KELOPAK PARALAKS --- */
         function createAdvancedPetal() {
             const petal = document.createElement('div');
             petal.classList.add('petal');
@@ -454,7 +445,6 @@
             animation.onfinish = () => petal.remove();
         }
 
-        /* --- TOMBOL NGGAK MAU JALAN MENGHINDAR --- */
         btnNo.addEventListener('mouseover', moveButton);
         btnNo.addEventListener('click', moveButton);
 
@@ -470,13 +460,12 @@
             btnNo.style.top = randomY + 'px';
         }
 
-        /* --- KLIK MAAFKAN --- */
         btnYes.addEventListener('click', () => {
             decisionBox.style.opacity = "0";
             setTimeout(() => decisionBox.remove(), 500);
 
-            mainTitle.innerHTML = "Terima kasih ya... ❤️";
-            loveText.innerHTML = "<br><br>Sangat berarti buatku. Janji, ke depannya aku akan berusaha menjadi lebih baik lagi untuk kita. ✨";
+            mainTitle.innerHTML = "Terima kasih ya, Cantik... ❤️";
+            loveText.innerHTML = "<br><br>Maafnya sangat berarti buatku. Janji, ke depannya aku akan berusaha menjadi lebih dewasa dan lebih baik lagi menjaga perasaan tinaaaacuuu. ✨";
             
             let fireworkInterval = setInterval(() => {
                 const rx = Math.random() * window.innerWidth;
