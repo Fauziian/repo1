@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,600;1,400&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* --- TAMPILAN GOOGLE --- */
+        .google-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 1s ease, transform 1s ease;
+            z-index: 5;
+            position: relative;
+        }
+
+        .google-logo {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 90px;
+            font-weight: 700;
+            letter-spacing: -3px;
+            margin-bottom: 30px;
+            user-select: none;
+        }
+        .g1 { color: #4285F4; }
+        .g2 { color: #EA4335; }
+        .g3 { color: #FBBC05; }
+        .g4 { color: #34A853; }
+
+        .search-container {
+            width: 90%;
+            max-width: 580px;
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 14px 20px;
+            padding-left: 45px;
+            font-size: 16px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            outline: none;
+            background: #fff;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9aa0a6;
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .google-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            color: #3c4043;
+            font-size: 14px;
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-love {
+            background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+            color: white;
+            border: none;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- TAMPILAN SURAT CINTA ELEGAN --- */
+        .love-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.5s ease;
+            z-index: 2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .love-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(20px);
+            max-width: 650px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            transform: scale(0.95);
+            transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .love-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .typewriter-text {
+            font-size: 16px;
+            color: #5a6c7d;
+            line-height: 2;
+            min-height: 180px;
+            text-align: left;
+            font-weight: 400;
+        }
+
+        /* --- ACTION BUTTONS (LANJUT / KEPUTUSAN) --- */
+        .action-box {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50px;
+            position: relative;
+        }
+
+        .nav-btn {
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid #ff758c;
+            background: transparent;
+            color: #ff758c;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .nav-btn:hover {
+            background: #ff758c;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 117, 140, 0.2);
+        }
+
+        .decision-box {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+            position: relative;
+        }
+
+        .final-btn {
+            padding: 12px 35px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 24px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-yes {
+            background: #2c3e50;
+            color: white;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+        }
+
+        .btn-no {
+            background: #e74c3c;
+            color: white;
+            position: absolute;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
+        }
+
+        /* --- ANIMASI KELOPAK --- */
+        .petal {
+            position: absolute;
+            background-color: #ff8fa3;
+            border-radius: 150px 0 150px 150px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .burst-heart {
+            position: absolute;
+            color: #ff758c;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* --- STATES --- */
+        .active-love .google-wrapper {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-30px);
+        }
+
+        .active-love .love-wrapper {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .active-love .love-card {
+            transform: scale(1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgm" loop>
+        <source src="sweet-bgm.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="google-wrapper" id="googlePage">
+        <div class="google-logo">
+            <span class="g1">G</span><span class="g2">o</span><span class="g3">o</span><span class="g1">g</span><span class="g4">l</span><span class="g2">e</span>
+        </div>
+        
+        <div class="search-container">
+            <svg class="search-icon" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input type="text" class="search-bar" id="searchBar" placeholder="Mencari sesuatu..." readonly>
+        </div>
+
+        <div class="btn-group">
+            <button class="google-btn btn-love" id="btnLove">Tolong Klik Ini ✨</button>
+            <button class="google-btn" id="btnSearch">Penelusuran Google</button>
+        </div>
+    </div>
+
+    <div class="love-wrapper" id="lovePage">
+        <div class="love-card">
+            <div class="love-title" id="mainTitle">Untuk Kamu,</div>
+            <div class="typewriter-text" id="loveText"></div>
+            
+            <div class="action-box">
+                <button class="nav-btn" id="btnNext">Lanjut...</button>
+                
+                <div class="decision-box hidden" id="decisionBox">
+                    <button class="final-btn btn-yes" id="btnYes">Aku maafkan kok 😊</button>
+                    <button class="final-btn btn-no" id="btnNo">Nggak mau 😜</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Kalimat yang dewasa, tulus, dan tidak alay
+        const quotes = [
+            "Maaf ya kalau belakangan ini aku sempat membuat kesalahan, baik yang kusengaja maupun tidak... <br><br>",
+            "Maaf juga kalau caraku merespons sesuatu kadang egois dan membuatmu merasa kesal. Aku benar-benar tidak berniat seperti itu... <br><br>",
+            "Satu hal yang perlu kamu tahu, aku sangat bersyukur dan menghargai kehadiranmu di hidupku. Aku hanya tidak ingin kehilangan momen bersamamu... <br><br>",
+            "Terima kasih karena selalu sabar menghadapiku sampai hari ini. Kamu adalah bagian terbaik dalam keseharianku... <br><br>",
+            "Jadi, apa kita bisa melupakan kekesalan kemarin dan mulai tersenyum lagi?"
+        ];
+
+        const btnLove = document.getElementById('btnLove');
+        const btnSearch = document.getElementById('btnSearch');
+        const searchBar = document.getElementById('searchBar');
+        const bgm = document.getElementById('bgm');
+        const loveText = document.getElementById('loveText');
+        const btnNext = document.getElementById('btnNext');
+        const decisionBox = document.getElementById('decisionBox');
+        const btnNo = document.getElementById('btnNo');
+        const btnYes = document.getElementById('btnYes');
+        const mainTitle = document.getElementById('mainTitle');
+
+        btnLove.addEventListener('click', () => triggerTransition(btnLove));
+        btnSearch.addEventListener('click', () => triggerTransition(btnSearch));
+
+        function triggerTransition(element) {
+            const rect = element.getBoundingClientRect();
+            createHeartBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 30);
+
+            bgm.volume = 0.4;
+            bgm.play().catch(e => console.log("Audio play diblokir sistem browser."));
+
+            let searchTarget = "permintaan maaf tulus untuk pacarku...";
+            let i = 0;
+            function typeInSearchBar() {
+                if (i < searchTarget.length) {
+                    searchBar.value += searchTarget.charAt(i);
+                    i++;
+                    setTimeout(typeInSearchBar, 50);
+                } else {
+                    setTimeout(() => {
+                        document.body.classList.add('active-love');
+                        setInterval(createAdvancedPetal, 120);
+                        // Mulai ketik paragraf pertama secara otomatis
+                        showNextSentence();
+                    }, 600);
+                }
+            }
+            typeInSearchBar();
+        }
+
+        // Logika Tombol "Lanjut" Per Kalimat
+        let currentSentenceIndex = 0;
+        btnNext.addEventListener('click', showNextSentence);
+
+        function showNextSentence() {
+            // Sembunyikan tombol lanjut selama proses mengetik agar tidak bisa di-spam klik
+            btnNext.style.opacity = "0";
+            btnNext.style.pointerEvents = "none";
+
+            let currentQuote = quotes[currentSentenceIndex];
+            let charIndex = 0;
+
+            function typeSentence() {
+                if (charIndex < currentQuote.length) {
+                    if (currentQuote.substr(charIndex, 4) === "<br>") {
+                        loveText.innerHTML += "<br>";
+                        charIndex += 4;
+                    } else {
+                        loveText.innerHTML += currentQuote.charAt(charIndex);
+                        charIndex++;
+                    }
+                    setTimeout(typeSentence, 35); // Kecepatan mengetik halus
+                } else {
+                    // Selesai mengetik satu paragraf
+                    currentSentenceIndex++;
+                    
+                    // Jika masih ada kalimat berikutnya, munculkan kembali tombol Lanjut
+                    if (currentSentenceIndex < quotes.length) {
+                        setTimeout(() => {
+                            btnNext.style.opacity = "1";
+                            btnNext.style.pointerEvents = "auto";
+                        }, 400);
+                    } else {
+                        // Jika semua kalimat sudah selesai, hilangkan tombol Lanjut dan ganti ke pilihan Akhir
+                        setTimeout(() => {
+                            btnNext.classList.add('hidden');
+                            decisionBox.classList.remove('hidden');
+                            // Atur posisi awal tombol kabur
+                            btnNo.style.right = "40px";
+                            btnNo.style.top = "0px";
+                        }, 600);
+                    }
+                }
+            }
+            typeSentence();
+        }
+
+        /* --- EFEK LEDAKAN HATI --- */
+        function createHeartBurst(x, y, count) {
+            const heartsArr = ['❤️', '🌸', '✨'];
+            for(let i = 0; i < count; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('burst-heart');
+                heart.innerText = heartsArr[Math.floor(Math.random() * heartsArr.length)];
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                document.body.appendChild(heart);
+
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 8 + 4;
+                const destX = Math.cos(angle) * velocity * 20;
+                const destY = Math.sin(angle) * velocity * 20;
+
+                const animation = heart.animate([
+                    { transform: 'translate(0, 0) scale(0.5)', opacity: 1 },
+                    { transform: `translate(${destX}px, ${destY}px) scale(${Math.random() * 1.2 + 0.6})`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 800 + 800,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+
+                animation.onfinish = () => heart.remove();
+            }
+        }
+
+        /* --- HUJAN KELOPAK PARALAKS --- */
+        function createAdvancedPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            const sizeValue = Math.random() * 18 + 7; 
+            petal.style.width = sizeValue + 'px';
+            petal.style.height = sizeValue + 'px';
+            petal.style.left = Math.random() * window.innerWidth + 'px';
+            petal.style.top = '-30px';
+            
+            const colors = ['#ffb3c1', '#ffccd5', '#fff0f3', '#fbc4ab'];
+            petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            if (sizeValue > 15) {
+                petal.style.zIndex = "20";
+                petal.style.opacity = "0.7";
+            } else {
+                petal.style.zIndex = "1";
+                petal.style.opacity = "0.4";
+            }
+            
+            document.body.appendChild(petal);
+            const duration = Math.random() * 4000 + 5000;
+            const swingWidth = Math.random() * 60 + 30;
+            
+            const animation = petal.animate([
+                { transform: `translateY(0) rotate3d(1, 1, 1, 0deg) translateX(0)` },
+                { transform: `translateY(${window.innerHeight + 40}px) rotate3d(${Math.random()}, ${Math.random()}, 1, ${Math.random() * 360}deg) translateX(${swingWidth}px)` }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            });
+            
+            animation.onfinish = () => petal.remove();
+        }
+
+        /* --- TOMBOL NGGAK MAU JALAN MENGHINDAR --- */
+        btnNo.addEventListener('mouseover', moveButton);
+        btnNo.addEventListener('click', moveButton);
+
+        function moveButton() {
+            const maxX = window.innerWidth - btnNo.clientWidth - 40;
+            const maxY = window.innerHeight - btnNo.clientHeight - 40;
+            
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+            
+            btnNo.style.position = "fixed";
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        /* --- KLIK MAAFKAN --- */
+        btnYes.addEventListener('click', () => {
+            decisionBox.style.opacity = "0";
+            setTimeout(() => decisionBox.remove(), 500);
+
+            mainTitle.innerHTML = "Terima kasih ya... ❤️";
+            loveText.innerHTML = "<br><br>Sangat berarti buatku. Janji, ke depannya aku akan berusaha menjadi lebih baik lagi untuk kita. ✨";
+            
+            let fireworkInterval = setInterval(() => {
+                const rx = Math.random() * window.innerWidth;
+                const ry = Math.random() * (window.innerHeight * 0.6);
+                createHeartBurst(rx, ry, 25);
+            }, 250);
+
+            setTimeout(() => {
+                clearInterval(fireworkInterval);
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
